@@ -10,17 +10,14 @@ permissions:
 jobs:
   run-autograding-tests:
     runs-on: ubuntu-latest
-    if: github.actor != 'github-classroom-staging[bot]'
+    if: github.actor != 'github-classroom[bot]'
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
-    - name: test
+    - name: Test
       id: test
-      uses: education/autograding-command-grader@v1
+      uses: education/autograding-python-grader@v1
       with:
-        test-name: test
-        setup-command: sudo -H pip3 install pytest
-        command: pytest
         timeout: 10
     - name: Autograding Reporter
       uses: education/autograding-grading-reporter@v1
